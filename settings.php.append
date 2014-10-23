@@ -1,0 +1,18 @@
+$conf['site_name'] =  $_SERVER['HTTP_HOST'];                                                                                                                                                   
+
+// Whether the Environment Indicator should use the settings.php variables for the indicator. On your production environment, you should probably set this to FALSE.
+$conf['environment_indicator_overwrite'] = TRUE;
+// The text that will be displayed on the indicator.
+$conf['environment_indicator_overwritten_name'] = $conf['site_name'];
+// Valid css colors for the text and background of the admin toolbar and environment indicator.
+
+$code = dechex(crc32($conf['site_name']));
+$code = substr($code, 0, 6);
+
+$conf['environment_indicator_overwritten_color'] = $code;
+$conf['environment_indicator_overwritten_text_color'] = '#ffffff';
+// Where your indicator may appear. Allowed values are "top" and "bottom".
+$conf['environment_indicator_overwritten_position'] = 'top';
+// A boolean value indicating whether the Environment Indicator should be visible at all times, fixed at the top/bottom of the screen.
+$conf['environment_indicator_overwritten_fixed'] = FALSE;
+
