@@ -2,7 +2,7 @@
 # Drupal/SSH with Nginx, PHP5 and SQLite
 ##
 FROM ubuntu:13.04
-MAINTAINER http://www.github.com/b7alt/
+MAINTAINER http://www.github.com/b7alt/ by b7alt
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
