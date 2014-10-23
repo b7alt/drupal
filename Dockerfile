@@ -41,6 +41,8 @@ RUN cd /srv/drupal/www/ && drush -y en environment_indicator devel
 
 RUN ls -al /srv/drupal/www/sites/default/files
 RUN chown -R www-data:www-data /srv/drupal/www/sites/default/files/.ht.sqlite
+RUN chmod a-w /srv/drupal/www/sites/default/settings.php
+
 
 RUN echo "root:root" | chpasswd
 
