@@ -2,7 +2,7 @@
 # Drupal/SSH with Nginx, PHP5 and SQLite
 ##
 FROM ubuntu:13.04
-MAINTAINER Mike Douglas http://www.github.com/b7alt/
+MAINTAINER http://www.github.com/b7alt/
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
@@ -28,10 +28,19 @@ RUN chmod a+w /srv/drupal/www/sites/default && mkdir /srv/drupal/www/sites/defau
 RUN chown -R www-data:www-data /srv/drupal/www/
 RUN cp /srv/drupal/www/sites/default/default.settings.php /srv/drupal/www/sites/default/settings.php
 RUN chmod a+w /srv/drupal/www/sites/default/settings.php
-RUN cat /settings.php.append >> /srv/drupal/www/sites/default/settings.php
 RUN chown www-data:www-data /srv/data
 
-RUN cd /srv/drupal/www/ && drush -y dl environment_indicator devel #  && drush -y en environment_indicator devel
+
+#RUN chmod a+w /srv/drupal/www/sites/default/files
+RUN cd /srv/drupal/www/ && drush -y site-install standard --account-name=admin --account-pass=test --db-url=sqlite:sites/default/files/.ht.sqlite
+
+RUN cat /settings.php.append >> /srv/drupal/www/sites/default/settings.php
+
+RUN cd /srv/drupal/www/ && drush -y dl environment_indicator devel
+RUN cd /srv/drupal/www/ && drush -y en environment_indicator devel
+
+RUN ls -al /srv/drupal/www/sites/default/files
+RUN chown -R www-data:www-data /srv/drupal/www/sites/default/files/.ht.sqlite
 
 RUN echo "root:root" | chpasswd
 
