@@ -7,7 +7,7 @@ MAINTAINER http://www.github.com/b7alt/ by b7alt
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
 RUN apt-get update && apt-get upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor openssh-server nginx php5-fpm php5-sqlite php5-gd drush emacs
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor openssh-server nginx php5-fpm php5-sqlite php5-gd drush emacs php-apc 
 RUN update-rc.d nginx disable
 RUN update-rc.d php5-fpm disable
 RUN update-rc.d supervisor disable
