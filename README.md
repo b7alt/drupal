@@ -1,7 +1,7 @@
 # docker-drupal
 
 Drupal 7.x already installed (admin/test) 
-with SQLite on Nginx, with SSH access for drush, Ubuntu 13.04
+with SQLite on Nginx, APC, with SSH access for drush, Ubuntu 13.04
 
 ## Build
 
