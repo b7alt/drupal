@@ -1,6 +1,6 @@
 # docker-drupal
 
-Drupal 7.x already installed (admin/test) 
+Drupal >= 7.33 already installed (admin/test) 
 with SQLite on Nginx, APC, with SSH access for drush, Ubuntu 13.04
 
 ## Build
@@ -15,6 +15,6 @@ This image exposes port 80 for web traffic and port 22 for optional SSH access.
 
 To use:
 
-`docker run -d -p 80 -p 22 -t drupal`
+`docker run -d -p 8080:80 -p 2222:22 -t drupal`
 
 If you don't need SSH access (you usually do to upload libraries and reset premissions on settings.php), just omit `-p 22`
