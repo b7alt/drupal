@@ -36,13 +36,24 @@ RUN cd /srv/drupal/www/ && drush -y site-install standard --account-name=admin -
 
 RUN cat /settings.php.append >> /srv/drupal/www/sites/default/settings.php
 
-RUN cd /srv/drupal/www/ && drush -y dl environment_indicator devel
-RUN cd /srv/drupal/www/ && drush -y en environment_indicator devel
+RUN cd /srv/drupal/www/ && drush -y dl environment_indicator devel views responsive_bartik
+RUN cd /srv/drupal/www/ && drush -y en environment_indicator devel views views_ui responsive_bartik
+RUN cd /srv/drupal/www/ && drush -y vset theme_default responsive_bartik
+RUN cd /srv/drupal/www/ && drush -y vset cache 1 --yes
+RUN cd /srv/drupal/www/ && drush -y vset block_cache 1 --yes
+RUN cd /srv/drupal/www/ && drush -y vset cache_lifetime 300 --yes
+RUN cd /srv/drupal/www/ && drush -y vset page_cache_maximum_age 300 --yes
+
+
+RUN cd /srv/drupal/www/ && drush -y vset preprocess_css 1 --yes
+RUN cd /srv/drupal/www/ && drush -y vset preprocess_js  1 --yes
+
 
 RUN ls -al /srv/drupal/www/sites/default/files
 RUN chown -R www-data:www-data /srv/drupal/www/sites/default/files/.ht.sqlite
 RUN chmod a-w /srv/drupal/www/sites/default/settings.php
 
+RUN chown -R www-data:www-data /srv/drupal/www/
 
 RUN echo "root:root" | chpasswd
 RUN sed --in-place=.bak 's/without-password/yes/' /etc/ssh/sshd_config

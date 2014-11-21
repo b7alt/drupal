@@ -1,6 +1,6 @@
 # docker-drupal
 
-Drupal >= 7.33 already installed (admin/test) 
+Drupal >= 7.34 already installed (admin/test) 
 with SQLite on Nginx, APC, with SSH access for drush, Ubuntu 14.04.1 LTS
 
 ## Build
